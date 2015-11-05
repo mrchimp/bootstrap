@@ -10,7 +10,7 @@ if (typeof jQuery === 'undefined') {
 
 +function ($) {
   var version = $.fn.jquery.split(' ')[0].split('.')
-  if (version[0] !== '2') {
+  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1)) {
     throw new Error('Bootstrap\'s JavaScript requires jQuery version 2.x.x')
   }
 }(jQuery);
@@ -1786,7 +1786,7 @@ var Modal = (function ($) {
         $(this._dialog).on(Event.MOUSEDOWN_DISMISS, function () {
           $(_this7._element).one(Event.MOUSEUP_DISMISS, function (event) {
             if ($(event.target).is(_this7._element)) {
-              that._ignoreBackdropClick = true;
+              _this7._ignoreBackdropClick = true;
             }
           });
         });
@@ -2752,6 +2752,8 @@ var Tab = (function ($) {
 
   return Tab;
 })(jQuery);
+
+/* global Tether */
 
 /**
  * --------------------------------------------------------------------------
